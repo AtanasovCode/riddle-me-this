@@ -12,6 +12,7 @@ function App() {
 
   const fetchRiddle = async () => {
     try {
+      setShowAnswer(false);
       setLoading(true);
 
       const data = await fetch("https://riddles-api.vercel.app/random");
@@ -46,8 +47,8 @@ function App() {
   const answerStyle = showAnswer ? "" : "cursor-pointer"
 
   return (
-    <div className="min-h-screen bg-background text-text flex items-center justify-center font-sans">
-      <div className="flex flex-col items-center justify-center w-[95%] xs:w-[85%] sm:w-[80%] md:w-[60%] lg:w-[35%]">
+    <div className="min-h-[100dvh] bg-background text-text flex items-center justify-center font-sans">
+      <div className="flex flex-col items-center justify-center w-[95%] xs:w-[85%] sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[35%] max-w-[45rem]">
         <div className="flex items-center justify-center w-full mb-6">
           <img src={logo} alt="logo" className="w-full" />
         </div>
@@ -75,17 +76,22 @@ function App() {
             }
           </div>
         </div>
-        <div className="w-full flex items-center justify-center mt-6">
+        <div className="w-full flex items-center justify-center mt-4">
           <input 
             type="button"
             value="New Riddle"
-            className="w-full text-background bg-primary px-6 font-semibold py-4 text-center rounded-xl cursor-pointer"
+            className="w-full text-background bg-primary px-6 font-bold py-4 text-center rounded-xl cursor-pointer"
             onClick={() => {
               getRiddle();
-              setShowAnswer(false);
             }}
           />
         </div>
+        <a 
+          href="https://riddles-api.vercel.app/" target="_blank" 
+          className="w-full flex items-center justify-center absolute bottom-[2%] mt-2 text-sm opacity-70 underline"
+        >
+          Powered by riddles-api
+        </a>
       </div>
     </div>
   )
