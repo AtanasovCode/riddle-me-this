@@ -6,8 +6,16 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {},
-      fontFamily: {},
+      colors: {
+        'text': '#d0fafb',
+        'background': '#021415',
+        'primary': '#7ef1f5',
+        'secondary': '#0d259d',
+        'accent': '#441fed',
+      },
+      fontFamily: {
+        'sans': "Arima",
+      },
       screens: {
         'xs': "550px",
       },

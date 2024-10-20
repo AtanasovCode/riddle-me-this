@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import logo from './assets/logo.svg';
+
 function App() {
 
   const [riddle, setRiddle] = useState("");
@@ -44,29 +46,45 @@ function App() {
   const answerStyle = showAnswer ? "" : "cursor-pointer"
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">
-      <div className="flex flex-col items-center justify-center w-[95%]">
-        <div className="font-bold text-2xl mb-8 text-center">
-          Riddle me this
+    <div className="min-h-screen bg-background text-text flex items-center justify-center font-sans">
+      <div className="flex flex-col items-center justify-center w-[95%] xs:w-[85%] sm:w-[80%] md:w-[60%] lg:w-[35%]">
+        <div className="flex items-center justify-center w-full mb-6">
+          <img src={logo} alt="logo" className="w-full" />
         </div>
-        <div className="p-4 rounded-xl border border-slate-400 mb-4 w-full min-h-36">
-          {
-            !loading && <div className="text-lg font-semibold">
-              {riddle}
-            </div>
-          }
-        </div>
-        <div className={`p-4 rounded-xl border border-slate-400 w-full relative min-h-36 ${answerStyle}`}>
-          <div>
-            {answer}
+        <div className="w-full flex flex-col items-center justify-center md:Flex-row">
+          <div className="p-4 rounded-xl border border-accent mb-4 w-full min-h-28">
+            {
+              !loading && <div className="">
+                {riddle}
+              </div>
+            }
           </div>
-          {
-            !showAnswer &&
-            <div className="absolute top-0 left-0 w-full h-full bg-slate-500 
-            flex items-center justify-center bg-opacity-30 backdrop-blur-[4px]">
-              <div className="text-xl">See Answer</div>
+          <div
+            className={`p-4 rounded-xl border border-accent w-full relative min-h-28 ${answerStyle}`}
+            onClick={() => !showAnswer && setShowAnswer(true)}
+          >
+            <div>
+              {answer}
             </div>
-          }
+            {
+              !showAnswer &&
+              <div className="absolute top-0 left-0 w-full h-full bg-slate-500
+            flex items-center justify-center bg-opacity-30 backdrop-blur-[4px]">
+                <div className="text-xl">See Answer</div>
+              </div>
+            }
+          </div>
+        </div>
+        <div className="w-full flex items-center justify-center mt-6">
+          <input 
+            type="button"
+            value="New Riddle"
+            className="w-full text-background bg-primary px-6 font-semibold py-4 text-center rounded-xl cursor-pointer"
+            onClick={() => {
+              getRiddle();
+              setShowAnswer(false);
+            }}
+          />
         </div>
       </div>
     </div>
